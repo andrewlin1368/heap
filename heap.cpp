@@ -22,17 +22,19 @@ void heap::remove(){
 void heap::heapify(){
     for(int i=size-1;i>0;){
         int x=arr[get_parent(i)];
+        int j;
         if((i-1)%2!=0){
             if(arr[i]>arr[i-1]){
                 if(arr[i]>x)
                     swap(arr[i],arr[get_parent(i)]);
+                j=i;
             }
             else if(arr[i]<arr[i-1]){
                 if(arr[i-1]>x)
                     swap(arr[i-1],arr[get_parent(i)]);
+                j=i-1;
             }
-        int j=i;
-        while(j<size){
+        while(j<size-1){
             if(j*2+2<size){
                 int x=arr[j];
                 if(arr[j*2+1]>arr[j*2+2]){
@@ -40,16 +42,16 @@ void heap::heapify(){
                         swap(arr[j],arr[j*2+1]);
                 }
                 else{
-                    if(arr[j*2+2>x])
+                    if(arr[j*2+2]>x)
                         swap(arr[j*2+2],arr[j]);
                 }
-                j=j*2+2;
+                j=j*2+3;
             }
             else if(j*2+1<size){
                 int x=arr[j];
                 if(arr[j*2+1]>x)
                     swap(arr[j],arr[j*2+1]);
-                j=j*2+1;
+                j=j*2+2;
             }
             else{
                 break;
@@ -61,7 +63,7 @@ void heap::heapify(){
             if(arr[i]>x)
                 swap(arr[i],arr[get_parent(i)]);
             int j=i;
-            while(j<size){
+            while(j<size-1){
                 if(j*2+2<size){
                     int x=arr[j];
                     if(arr[j*2+1]>arr[j*2+2]){
@@ -72,13 +74,13 @@ void heap::heapify(){
                         if(arr[j*2+2>x])
                             swap(arr[j*2+2],arr[j]);
                     }
-                    j=j*2+2;
+                    j=j*2+3;
                 }
                 else if(j*2+1<size){
                     int x=arr[j];
                     if(arr[j*2+1]>x)
                         swap(arr[j],arr[j*2+1]);
-                    j=j*2+1;
+                    j=j*2+2;
                 }
                 else{
                     break;
